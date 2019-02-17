@@ -8,10 +8,10 @@ module.exports = {
 		contentBase: path.resolve(__dirname, 'dist'),
 		compress: true,
 	},
-	entry: "./src/index.web.js",
+	entry: "./index.js",
 	output: {
-		library: "swtc_base",
-		path: path.join(__dirname, "dist"),
-		filename: ["swtc-base-", ".min.js"].join(pkg.version)
+		library: "swtc_wallet",
+		path: path.resolve(__dirname, "dist"),
+		filename: ["swtc-wallet-", ".min.js"].join(pkg.version)
 	},
 }

@@ -1,9 +1,8 @@
 {
-	"name": "swtc-base-lib",
+	"name": "swtc-wallet",
 	"version": "1.0.9",
-	"description": "swtc base library for jingtum blockchain",
-	"main": "src/index.js",
-	"browser": "src/index.web.js",
+	"description": "swtc wallet library",
+	"main": "index.js",
 	"directories": {
 		"test": "test"
 	},
@@ -18,30 +17,25 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/swtcca/swtc-base-lib.git"
+		"url": "git+https://github.com/swtcca/swtc-wallet.git"
 	},
 	"keywords": [
 		"swtc",
 		"jingtum",
-		"wallet",
-		"account",
-		"keypair"
+		"wallet"
 	],
 	"author": "Lospring Liu <lospringliu@gmail.com>",
 	"license": "BSD-2-Clause",
 	"bugs": {
-		"url": "https://github.com/swtcca/swtc-base-lib/issues"
+		"url": "https://github.com/swtcca/swtc-wallet/issues"
 	},
-	"homepage": "https://github.com/swtcca/swtc-base-lib#readme",
+	"homepage": "https://github.com/swtcca/swtc-wallet#readme",
 	"dependencies": {
 		"assert": "^1.4.1",
-		"base-x": "1.1.0",
 		"bn.js": "^4.11.8",
-		"bops": "^1.0.0",
-		"brorand": "^1.1.0",
 		"elliptic": "^6.4.1",
-		"extend": "^3.0.2",
 		"hash.js": "^1.1.7",
+		"swtc-keypairs": "^0.10.4",
 		"utf8": "^3.0.0"
 	},
 	"devDependencies": {

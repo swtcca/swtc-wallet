@@ -1,6 +1,6 @@
 'use strict';
 
-var keypairs = require('./keypairs');
+var keypairs = require('swtc-keypairs');
 var elliptic = require('elliptic');
 var ec = elliptic.ec('secp256k1');
 var hexToBytes = require('./utils').hexToBytes;
