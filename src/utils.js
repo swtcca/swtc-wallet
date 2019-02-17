@@ -1,6 +1,6 @@
 'use strict';
 
-var utf8 = require('utf8');
+var hashjs = require('hash.js');
 var BN = require('bn.js');
 var assert = require('assert');
 
@@ -16,5 +16,17 @@ function hexToBytes(a) {
     return new BN(a, 16).toArray(null, a.length / 2);
 }
 
+function computePublicKeyHash(publicKeyBytes) {
+  var hash256 = hashjs.sha256().update(publicKeyBytes).digest()
+  var hash160 = hashjs.ripemd160().update(hash256).digest()
+  return hash160
+}
+
+function seedFromPhrase(phrase) {
+  return hashjs.sha512().update(phrase).digest().slice(0, 16)
+}
+
 exports.bytesToHex = bytesToHex;
 exports.hexToBytes = hexToBytes;
+exports.computePublicKeyHash = computePublicKeyHash;
+exports.seedFromPhrase = seedFromPhrase;
