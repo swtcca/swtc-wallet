@@ -10,8 +10,8 @@ module.exports = {
 	},
 	entry: "./index.js",
 	output: {
-		library: "swtc_wallet",
+		library: "bwt_wallet",
 		path: path.resolve(__dirname, "dist"),
-		filename: ["swtc-wallet-", ".js"].join(pkg.version)
+		filename: ["bwt-wallet-", ".js"].join(pkg.version)
 	},
 }

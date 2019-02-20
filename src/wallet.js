@@ -1,6 +1,6 @@
 'use strict';
 
-var keypairs = require('swtc-keypairs');
+var keypairs = require('bwt-keypairs');
 var ec = keypairs.ec;
 var hexToBytes = require('./utils').hexToBytes;
 var bytesToHex = require('./utils').bytesToHex;
