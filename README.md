@@ -1,10 +1,10 @@
-#The SWTC Base JavaScript Library
+# The SWTC Base JavaScript Library
 
 Basic SWTC library for development with modern javascript in concern, functions include keypairs and wallet
 `swtc-base-lib` makes working with Node.js and in the browser or even certain mobile app easy and fashion.
 This library currently uses the same source code from jingtum-base-lib but properly package them for convenience.
 
-##Getting `swtc-base-lib`
+## Getting `swtc-base-lib`
 
 **Via npm for Node.js**
 
@@ -23,7 +23,7 @@ This library currently uses the same source code from jingtum-base-lib but prope
 
 Then use the `dist/jingtum-base-*-.js` in your web application
 
-##Quickstart
+## Quickstart
 ```
     var Wallet = require('swtc-base-lib').Wallet;
     var wallet1 = Wallet.generate();//get a wallet
@@ -41,7 +41,7 @@ Then use the `dist/jingtum-base-*-.js` in your web application
     var ret = Wallet.isValidSecret('saai2npGJD7GKh9xLxARfZXk kc8Bf');// whether the secret is valid
 ```
 
-##Signature verification
+## Signature verification
 ```
   var wt = new Wallet('saai2npGJD7GKh9xLxARfZXkkc8Bf');
   var pubkey = wt.getPublicKey();
@@ -69,13 +69,13 @@ Then use the `dist/jingtum-base-*-.js` in your web application
 
 ------------------------------------------------
 
-#The Jingtum Base JavaScript Library
+# The Jingtum Base JavaScript Library
 
 Basic function for development, include generate wallet, check secret and check address.
 
 `jingtum-base-lib` connects to the Jingtum base lib and runs in Node.js as well as in the browser.
 
-##Getting `jingtum-base-lib`
+## Getting `jingtum-base-lib`
 
 **Via npm for Node.js**
 
@@ -93,7 +93,7 @@ Basic function for development, include generate wallet, check secret and check 
 
 Then use the minified `dist/jingtum-base-*-min.js` in your webpage
 
-##Quickstart
+## Quickstart
 ```
     var Wallet = require('jingtum-base-lib').Wallet;
     var wallet1 = Wallet.generate();//get a wallet
@@ -101,7 +101,7 @@ Then use the minified `dist/jingtum-base-*-min.js` in your webpage
     var ret = Wallet.isValidAddress('j98a2BFmVQDSCvQEQEAF9tE8JWpvLqRuUM');// whether the address is valid
     var ret = Wallet.isValidSecret('saai2npGJD7GKh9xLxARfZXk kc8Bf');// whether the secret is valid
 ```
-##Signature verification
+## Signature verification
 ```
   var wt = new Wallet('saai2npGJD7GKh9xLxARfZXkkc8Bf');
   var pubkey = wt.getPublicKey();
