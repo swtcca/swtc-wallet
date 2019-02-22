@@ -2,9 +2,6 @@
 
 var keypairs = require('swtc-keypairs');
 var ec = keypairs.ec;
-var hexToBytes = require('./utils').hexToBytes;
-var bytesToHex = require('./utils').bytesToHex;
-var hashjs = require('hash.js');
 
 var Wallet = function(secret) {
 	try {
@@ -50,9 +47,7 @@ Wallet.fromSecret = function(secret) {
  * @param address
  * @returns {boolean}
  */
-Wallet.isValidAddress = function(address) {
-	return keypairs.checkAddress(address);
-};
+Wallet.isValidAddress = keypairs.checkAddress;
 
 /**
  * static function
@@ -69,10 +64,6 @@ Wallet.isValidSecret = function(secret) {
 	}
 };
 
-function hash(message) {
-  return hashjs.sha512().update(message).digest().slice(0, 32);
-}
-
 /**
  * sign message with wallet privatekey
  * @param message
@@ -84,7 +75,7 @@ Wallet.prototype.sign = function(message) {
 	var privateKey = this._keypairs.privateKey;
 
 	 // Export DER encoded signature in Array
-	return bytesToHex(ec.sign(hash(message), hexToBytes(privateKey), { canonical: true }).toDER());
+	return ec.sign(message, privateKey);
 };
 
 /**
@@ -96,7 +87,7 @@ Wallet.prototype.sign = function(message) {
 Wallet.prototype.verify = function(message, signature) {
 	if (!this._keypairs) return null;
 	var publicKey = this._keypairs.publicKey;
-	return ec.verify(hash(message), signature, hexToBytes(publicKey));
+	return ec.verify(message, signature, publicKey);
 };
 
 /**
@@ -148,7 +139,7 @@ Wallet.prototype.signTx = function(message) {
 	var privateKey = this._keypairs.privateKey;
 
 	 // Export DER encoded signature in Array
-	return bytesToHex(ec.sign(message, hexToBytes(privateKey), { canonical: true }).toDER());
+	return ec.sign(message, privateKey);
 };
 
 /**
@@ -160,6 +151,6 @@ Wallet.prototype.signTx = function(message) {
 Wallet.prototype.verifyTx = function(message, signature) {
 	if (!this._keypairs) return null;
 	var publicKey = this._keypairs.publicKey;
-	return ec.verify(message, signature, hexToBytes(publicKey));
+	return ec.verify(message, signature, publicKey);
 };
 module.exports = Wallet;
