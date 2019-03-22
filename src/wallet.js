@@ -139,7 +139,7 @@ Wallet.prototype.signTx = function(message) {
 	var privateKey = this._keypairs.privateKey;
 
 	 // Export DER encoded signature in Array
-	return ec.sign(message, privateKey);
+	return ec.signTx(message, privateKey);
 };
 
 /**
@@ -151,6 +151,6 @@ Wallet.prototype.signTx = function(message) {
 Wallet.prototype.verifyTx = function(message, signature) {
 	if (!this._keypairs) return null;
 	var publicKey = this._keypairs.publicKey;
-	return ec.verify(message, signature, publicKey);
+	return ec.verifyTx(message, signature, publicKey);
 };
 module.exports = Wallet;
