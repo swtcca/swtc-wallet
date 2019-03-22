@@ -148,7 +148,7 @@ Wallet.prototype.signTx = function(message) {
 	var privateKey = this._keypairs.privateKey;
 
 	 // Export DER encoded signature in Array
-	return bytesToHex(ec.sign(message, hexToBytes(privateKey), { canonical: true }).toDER());
+	return bytesToHex(ec.signTx(message, hexToBytes(privateKey), { canonical: true }).toDER());
 };
 
 /**
@@ -160,6 +160,6 @@ Wallet.prototype.signTx = function(message) {
 Wallet.prototype.verifyTx = function(message, signature) {
 	if (!this._keypairs) return null;
 	var publicKey = this._keypairs.publicKey;
-	return ec.verify(message, signature, hexToBytes(publicKey));
+	return ec.verifyTx(message, signature, hexToBytes(publicKey));
 };
 module.exports = Wallet;
