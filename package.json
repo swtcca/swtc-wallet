@@ -1,45 +1,60 @@
 {
-	"name": "swtc-wallet",
-	"version": "1.1.4",
-	"description": "swtc wallet library",
-	"main": "index.js",
-	"directories": {
-		"test": "test"
-	},
-	"scripts": {
-		"gulp": "gulp dev",
-		"gulp:production": "gulp production",
-		"build": "webpack",
-		"build:production": "webpack --config prod.webpack.config",
-		"dev": "webpack-dev-server",
-		"test": "mocha \"test/test*.js\"",
-		"test:extended": "mocha \"test/*.js\""
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/swtcca/swtc-wallet.git"
-	},
-	"keywords": [
-		"swtc",
-		"jingtum",
-		"wallet"
-	],
-	"author": "Lospring Liu <lospringliu@gmail.com>",
-	"license": "BSD-2-Clause",
-	"bugs": {
-		"url": "https://github.com/swtcca/swtc-wallet/issues"
-	},
-	"homepage": "https://github.com/swtcca/swtc-wallet#readme",
-	"dependencies": {
-		"swtc-keypairs": "^0.11.6"
-	},
-	"devDependencies": {
-		"chai": "^4.2.0",
-		"gulp": "^4.0.0",
-		"mocha": "^5.2.0",
-		"webpack": "^4.29.3",
-		"webpack-cli": "^3.2.3",
-		"webpack-dev-server": "^3.1.14",
-		"webpack-stream": "^5.2.1"
-	}
+  "name": "swtc-wallet",
+  "version": "1.1.4",
+  "description": "swtc wallet library",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "prettier": "prettier",
+    "pretty-quick": "pretty-quick",
+    "prettier:check": "prettier -c --no-semi index.js src/*.js",
+    "prettier:tabs": "prettier --no-semi --use-tabs --write package.json index.js src/*.js",
+    "eslint": "eslint index.js src/*.js",
+    "gulp": "gulp dev",
+    "gulp:production": "gulp production",
+    "build": "webpack",
+    "build:production": "webpack --config prod.webpack.config",
+    "test": "mocha \"test/*.js\"",
+    "test:extended": "mocha \"test/*.js\"",
+    "test:nyc": "nyc --reporter=html --reporter=text mocha test/test*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swtcca/swtc-wallet.git"
+  },
+  "keywords": [
+    "swtc",
+    "jingtum",
+    "wallet"
+  ],
+  "author": "Lospring Liu <lospringliu@gmail.com>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/swtcca/swtc-wallet/issues"
+  },
+  "homepage": "https://github.com/swtcca/swtc-wallet#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged --no-restage --verbose --bail"
+    }
+  },
+  "dependencies": {
+    "swtc-keypairs": "^0.11.6"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.15.3",
+    "gulp": "^4.0.0",
+    "husky": "^1.3.1",
+    "mocha": "^5.2.0",
+    "nyc": "^13.3.0",
+    "prettier": "1.16.4",
+    "pretty-quick": "1.10.0",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-stream": "^5.2.1"
+  }
 }
