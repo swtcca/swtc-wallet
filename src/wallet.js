@@ -112,8 +112,8 @@ Wallet.prototype.secret = function() {
 Wallet.prototype.toJson = function() {
   if (!this._keypairs) return null
   return {
-    secret: secret(),
-    address: address()
+    secret: this.secret(),
+    address: this.address()
   }
 }
 
