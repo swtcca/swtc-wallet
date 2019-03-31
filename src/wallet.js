@@ -75,7 +75,8 @@ Wallet.prototype.sign = function(message) {
   var privateKey = this._keypairs.privateKey
 
   // Export DER encoded signature in Array
-  return ec.sign(message, privateKey)
+  //return ec.sign(message, privateKey)
+  return keypairs.signHash(message, privateKey)
 }
 
 /**
@@ -87,7 +88,8 @@ Wallet.prototype.sign = function(message) {
 Wallet.prototype.verify = function(message, signature) {
   if (!this._keypairs) return null
   var publicKey = this._keypairs.publicKey
-  return ec.verify(message, signature, publicKey)
+  //return ec.verify(message, signature, publicKey)
+  return ec.verifyHash(message, signature, publicKey)
 }
 
 /**
@@ -139,7 +141,8 @@ Wallet.prototype.signTx = function(message) {
   var privateKey = this._keypairs.privateKey
 
   // Export DER encoded signature in Array
-  return ec.signTx(message, privateKey)
+  //return ec.signTx(message, privateKey)
+  return keypairs.signTx(message, privateKey)
 }
 
 /**
@@ -151,6 +154,6 @@ Wallet.prototype.signTx = function(message) {
 Wallet.prototype.verifyTx = function(message, signature) {
   if (!this._keypairs) return null
   var publicKey = this._keypairs.publicKey
-  return ec.verifyTx(message, signature, publicKey)
+  return keypairs.verifyTx(message, signature, publicKey)
 }
 module.exports = Wallet
