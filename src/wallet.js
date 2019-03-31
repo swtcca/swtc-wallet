@@ -1,7 +1,6 @@
 "use strict"
 
 var keypairs = require("swtc-keypairs")()
-var ec = keypairs.ec
 
 var Wallet = function(secret) {
   try {
@@ -89,7 +88,7 @@ Wallet.prototype.verify = function(message, signature) {
   if (!this._keypairs) return null
   var publicKey = this._keypairs.publicKey
   //return ec.verify(message, signature, publicKey)
-  return ec.verifyHash(message, signature, publicKey)
+  return keypairs.verifyHash(message, signature, publicKey)
 }
 
 /**
