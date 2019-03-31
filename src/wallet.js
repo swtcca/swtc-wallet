@@ -1,6 +1,6 @@
 "use strict"
 
-var keypairs = require("swtc-keypairs")
+var keypairs = require("swtc-keypairs")()
 var ec = keypairs.ec
 
 var Wallet = function(secret) {
