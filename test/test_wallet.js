@@ -1,12 +1,48 @@
 const WalletFactory = require("../").Factory
 const expect = require("chai").expect
 const { chains, data } = require("./config")
+
 describe("Wallet", function() {
   let Wallet = WalletFactory()
+  describe("getCurrency", function() {
+    it("get correct currency", function() {
+      for (let chain of chains) {
+        let Wallet = WalletFactory(chain)
+        expect(Wallet.token).to.be.equal(chain.toUpperCase())
+        expect(Wallet.getCurrency()).to.be.equal(chain.toUpperCase())
+      }
+    })
+  })
+  describe("getFee", function() {
+    it("get correct fee", function() {
+      for (let chain of chains) {
+        let Wallet = WalletFactory(chain)
+        expect(Wallet.config.fee).to.be.a("number")
+        expect(Wallet.getFee()).to.be.equal(Wallet.config.fee)
+      }
+    })
+  })
+  describe("makeAmount", function() {
+    it("make correct amount", function() {
+      for (let chain of chains) {
+        let Wallet = WalletFactory(chain)
+        let amount = Wallet.makeAmount(1)
+        expect(amount).to.be.a("object")
+        expect(amount.currency).to.be.equal(chain.toUpperCase())
+        amount = Wallet.makeAmount(1, "coin")
+        expect(amount).to.be.a("object")
+        expect(amount.currency).to.be.equal("COIN")
+        amount = Wallet.makeAmount(1, "coin", "issuer")
+        expect(amount).to.be.a("object")
+        expect(amount.issuer).to.be.equal("issuer")
+      }
+    })
+  })
   describe("generate", function() {
     it("generate a wallet successfully", function() {
       for (let chain of chains) {
-        let wallet = Wallet.generate(chain == "swt" ? undefined : chain)
+        let Wallet = WalletFactory(chain)
+        let wallet = Wallet.generate()
         expect(wallet.address).to.not.be.null
         expect(wallet.secret).to.not.be.null
       }

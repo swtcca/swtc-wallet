@@ -16,9 +16,55 @@ const Factory = token_or_chain => {
   const KeyPair = KeyPairs(chain.code)
 
   return class Wallet {
-    public static token = chain.currency
-    public static chain = chain.code
+    public static token = chain.currency.toUpperCase()
+    public static chain = chain.code.toLowerCase()
     public static KeyPair = KeyPair
+    public static config = chain
+    public static getCurrency() {
+      return Wallet.token || "SWT"
+    }
+    public static getCurrencies() {
+      return Wallet.config.CURRENCIES || {}
+    }
+    public static getChain() {
+      return Wallet.chain || "jingtum"
+    }
+    public static getFee() {
+      return Wallet.config.fee || 10000
+    }
+    public static getAccountZero() {
+      return Wallet.config.ACCOUNT_ZERO || "jjjjjjjjjjjjjjjjjjjjjhoLvTp"
+    }
+    public static getAccountOne() {
+      return Wallet.config.ACCOUNT_ONE || "jjjjjjjjjjjjjjjjjjjjBZbvri"
+    }
+    public static getIssuer() {
+      return Wallet.config.issuer || "jGa9J9TkqtBcUoHe2zqhVFFbgUVED6o9or"
+    }
+    public static makeCurrency(
+      currency = Wallet.token,
+      issuer = Wallet.getIssuer()
+    ) {
+      const CURRENCIES = Wallet.getCurrencies()
+      currency = currency.toUpperCase()
+      currency = CURRENCIES.hasOwnProperty(currency)
+        ? CURRENCIES[currency]
+        : currency
+      return currency === Wallet.token
+        ? { currency, issuer: "" }
+        : { currency, issuer }
+    }
+    public static makeAmount(
+      value = 1,
+      currency = Wallet.token,
+      issuer = Wallet.getIssuer()
+    ) {
+      return typeof currency === "object"
+        ? Object.assign({}, currency, { value: Number(value) })
+        : Object.assign({}, this.makeCurrency(currency, issuer), {
+            value: Number(value)
+          })
+    }
     public static generate(options = {}) {
       const secret = KeyPair.generateSeed(options)
       const keypair = KeyPair.deriveKeyPair(secret)
